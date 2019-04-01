@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>首页_个人博客</title>
+{% endblock %}
+
+{% block content %}
+  <article>
+    <!--banner begin-->
+    <div class="picsbox">
+      <div class="banner">
+        <div id="banner" class="fader">
+          <li class="slide"><a href="article.html" target="_blank"><img src="../static/images/banner01.jpg"><span class="imginfo">爬虫微课5小时
+                python学习路线!</span></a></li>
+          <li class="slide"><a href="article.html" target="_blank"><img src="../static/images/banner02.jpg"><span class="imginfo">干货|如何优雅的在手机上进行Python编程</span></a></li>
+          <li class="slide"><a href="article.html" target="_blank"><img src="../static/images/banner03.jpg"><span class="imginfo">python-win10下使用定时任务执行程序</span></a></li>
+          <div class="fader_controls">
+            <div class="page prev" data-target="prev">&lsaquo;</div>
+            <div class="page next" data-target="next">&rsaquo;</div>
+            <ul class="pager_list">
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--banner end-->
+      <div class="toppic">
+          {% for article in new_articles %}
+            <li>
+                <a href="/article?article_id={{ article.id }}" target="_blank"> <i><img src="{{ article.picture }}"></i>
+                <h2>{{ article.title }}</h2>
+                <span>{{ article.type.type }}</span></a>
+            </li>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="blank"></div>
+    <!--blogsbox begin-->
+    <div class="blogsbox">
+
+        {% for article in articles %}
+            <div class="blogs" data-scroll-reveal="enter bottom over 1s">
+                <h3 class="blogtitle"><a href="/article?article_id={{ article.id }}" target="_blank">{{ article.title }}</a></h3>
+                <span class="blogpic"><a href="/article?article_id={{ article.id }}" title=""><img src="{{ article.picture }}" alt=""></a></span>
+                <p class="blogtext">{{ article.description[:30] }}...</p>
+                <div class="bloginfo">
+                  <ul>
+                    <li class="author"><a href="article.html">{{ article.author.username }}</a></li>
+                    <li class="timer">{{ article.publish_time }}</li>
+                    <li class="view">{{ article.click_num }}人已阅读</li>
+                    <li class="view">{{ article.praise_num }}人觉得很赞</li>
+                  </ul>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <!--blogsbox end-->
+    <div class="sidebar">
+      <div class="zhuanti">
+        <h2 class="hometitle">特别推荐</h2>
+        <ul>
+            {% for article in good_articles %}
+              <li><i><img src="{{ article.picture }}" style="width: 307px; height: 212px"></i>
+                <p>{{ article.title }}<span><a href="/article?article_id={{ article.id }}">{{ article.type.type }}</a></span> </p>
+              </li>
+            {% endfor %}
+        </ul>
+      </div>
+      <div class="tuijian">
+        <h2 class="hometitle">推荐文章</h2>
+        <ul class="tjpic">
+          <i><img src="../static/images/toppic01.jpg"></i>
+          <p><a href="#">python中打开TXT文件报错</a></p>
+        </ul>
+        <ul class="sidenews">
+          <li> <i><img src="../static/images/toppic01.jpg"></i>
+            <p><a href="#">python学习网址以及笔记</a></p>
+            <span>2018-05-13</span>
+          </li>
+          <li> <i><img src="../static/images/toppic02.jpg"></i>
+            <p><a href="#">CentOS7下python开发环境配置</a></p>
+            <span>2018-05-13</span>
+          </li>
+          <li> <i><img src="../static/images/v1.jpg"></i>
+            <p><a href="#">python初步实现word2vec</a></p>
+            <span>2018-05-13</span>
+          </li>
+          <li> <i><img src="../static/images/v2.jpg"></i>
+            <p><a href="#">Python之if判断语句与while和for循环</a></p>
+            <span>2018-05-13</span>
+          </li>
+        </ul>
+      </div>
+      <div class="tuijian">
+        <h2 class="hometitle">点击排行</h2>
+        <ul class="tjpic">
+            <a href="/article?article_id={{ first_click_article.id }}"><i><img src="{{ first_click_article.picture }}"></i></a>
+          <p><a href="/article?article_id={{ first_click_article.id }}">{{ first_click_article.title }}</a></p>
+        </ul>
+        <ul class="sidenews">
+            {% for article in sort_articles %}
+                <li>
+                    <a href="/article?article_id={{ article.id }}"><i><img src="{{ article.picture }}"></i></a>
+                    <p><a href="/article?article_id={{ article.id }}">{{ article.title }}</a></p>
+                    <span>{{ article.publish_time }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+      </div>
+      <div class="cloud">
+        <h2 class="hometitle">标签云</h2>
+        <ul>
+          <a href="#">陌上花开</a> <a href="#">校园生活</a> <a href="#">html5</a> <a href="#">SumSung</a> <a href="#">青春</a> <a
+            href="#">温暖</a> <a href="#">阳光</a> <a href="#">三星</a><a href="#">索尼</a> <a href="#">华维荣耀</a> <a href="#">三星</a>
+          <a href="#">索尼</a>
+        </ul>
+      </div>
+      <div class="links">
+        <h2 class="hometitle">友情链接</h2>
+        <ul>
+
+          <li><a href="http://study.zut.edu.cn/portal" target="_blank">中原工学院学校官方网站</a></li>
+          <li><a href="http://study.zut.edu.cn/portal" target="_blank">中原工学院网络教学平台</a></li>
+        </ul>
+      </div>
+      <div class="guanzhu" id="follow-us">
+        <h2 class="hometitle">关注我们 么哒！</h2>
+        <ul>
+          <li class="sina"><a href="#" target="_blank"><span>微信公众号</span>达内</a></li>
+          <li class="tencent"><a href="#" target="_blank"><span>微信咨询</span>XXX</a></li>
+          <li class="qq"><a href="#" target="_blank"><span>QQ号</span>XXXXXX</a></li>
+          <li class="email"><a href="#" target="_blank"><span>邮箱帐号</span>tedu.cn</a></li>
+          <li class="wxgzh"><a href="#" target="_blank"><span>咨询电话</span>xxxxxxxxxxx</a></li>
+        </ul>
+      </div>
+    </div>
+  </article>
+{% endblock %}
+

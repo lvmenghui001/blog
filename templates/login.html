@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../static/css/login_reglogin.css"/>
+    <style>
+        .error_tip{
+            height:30px;
+            line-height:30px;
+            margin-left:10px;
+            color:#e62e2e;
+        }
+    </style>
+</head>
+<body>
+	<div class="bg">
+		<img src="../static/images/b.jpg" alt="">
+	</div>
+	<div class="main">
+		<div class="header" >
+			<h1>中原工师生博客</h1>
+		</div>
+		<p></p>
+		<form action="/login" method="post">
+			<ul class="right-form">
+				<h2>Login:</h2>
+                <a href="/register" style="text-decoration: underline;float: left;margin-left: 115px; margin-top: -37px">没有账号?立即申请</a>
+				<li style="border: none;">
+                    <input type="text" name="user_name" placeholder="Username" required/>
+                    <span class="error_tip">{{ error_username }}</span>
+                    <div class="clear"></div>
+                </li>
+
+				<li style="border: none;">
+                    <input type="password" name="pwd" placeholder="Password" required/>
+                    <span class="error_tip">{{ error_pwd }}</span>
+                    <div class="clear"></div>
+                </li>
+                <a href="/forgot_password" style="text-decoration: underline;margin-left: 187px; margin-top: -37px">找回密码</a>
+                <br />
+				<input type="hidden" name="source_url"  value="{{ source_url }}">
+				<input type="submit" value="Login" >
+				<div class="clear"></div>
+			</ul>
+			<div class="clear"></div>
+		</form>
+	</div>
+	
+</body>
+</html>
